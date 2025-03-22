@@ -101,7 +101,7 @@ twitch_miner = TwitchChannelPointsMiner(
             stealth_mode=True,                  # If the calculated amount of channel points is GT the highest bet, place the highest value minus 1-2 points Issue #33
             delay_mode=DelayMode.FROM_END,      # When placing a bet, we will wait until `delay` seconds before the end of the timer
             delay=6,
-            minimum_points=20000,               # Place the bet only if we have at least 20k points. Issue #113
+            minimum_points=1234,               # Place the bet only if we have at least 20k points. Issue #113
             filter_condition=FilterCondition(
                 by=OutcomeKeys.TOTAL_USERS,     # Where apply the filter. Allowed [PERCENTAGE_USERS, ODDS_PERCENTAGE, ODDS, TOP_POINTS, TOTAL_USERS, TOTAL_POINTS]
                 where=Condition.LTE,            # 'by' must be [GT, LT, GTE, LTE] than value
@@ -123,17 +123,13 @@ twitch_miner = TwitchChannelPointsMiner(
 
 twitch_miner.mine(
     [
-        Streamer("ZakvielChannel", settings=StreamerSettings(make_predictions=False  , follow_raid=True , claim_drops=False  , watch_streak=True , community_goals=False , bet=BetSettings(strategy=Strategy.SMART      , percentage=5 , stealth_mode=True,  percentage_gap=20 , max_points=234   , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_USERS,      where=Condition.LTE, value=800 ) ) )),
-        Streamer("T2x2", settings=StreamerSettings(make_predictions=False , follow_raid=True  , claim_drops=False ,                                             bet=BetSettings(strategy=Strategy.PERCENTAGE , percentage=5 , stealth_mode=False, percentage_gap=20 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_POINTS,     where=Condition.GTE, value=250 ) ) )),
-        Streamer("Stintik", settings=StreamerSettings(make_predictions=False  , follow_raid=True ,                     watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.SMART      , percentage=5 , stealth_mode=False, percentage_gap=30 , max_points=50000 , filter_condition=FilterCondition(by=OutcomeKeys.ODDS,             where=Condition.LT,  value=300 ) ) )),
-        Streamer("5opka", settings=StreamerSettings(make_predictions=False , follow_raid=True  ,                     watch_streak=True ,                                                                                                                                                                                                                                                       )),
-        Streamer("drakeoffc", settings=StreamerSettings(make_predictions=False  , follow_raid=True  , claim_drops=False ,  watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.HIGH_ODDS  , percentage=7 , stealth_mode=True,  percentage_gap=20 , max_points=90    , filter_condition=FilterCondition(by=OutcomeKeys.PERCENTAGE_USERS, where=Condition.GTE, value=300 ) ) )),
-        Streamer("PWGood"), 
-        Streamer("streamer-username07"),
-        Streamer("streamer-username08"),
-        "streamer-username09",
-        "streamer-username10",
-        "streamer-username11"
+       Streamer("ZakvielChannel", settings=StreamerSettings(make_predictions=False  , follow_raid=True , claim_drops=True  , watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.SMART      , percentage=20 , stealth_mode=True,  percentage_gap=4 , max_points=1234   , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_USERS,      where=Condition.LTE, value=800 ) ) )),
+       Streamer("T2x2", settings=StreamerSettings(make_predictions=False , follow_raid=True  , claim_drops=True ,  watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.PERCENTAGE , percentage=5 , stealth_mode=False, percentage_gap=20 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_POINTS,     where=Condition.GTE, value=250 ) ) )),
+       Streamer("Stintik", settings=StreamerSettings(make_predictions=False , follow_raid=True  , claim_drops=True ,  watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.PERCENTAGE , percentage=5 , stealth_mode=False, percentage_gap=20 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_POINTS,     where=Condition.GTE, value=250 ) ) )),
+       Streamer("5opka", settings=StreamerSettings(make_predictions=True , follow_raid=True  , claim_drops=True ,  watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.HIGH_ODDS , percentage=20 , stealth_mode=True, percentage_gap=5 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_USERS,     where=Condition.GTE, value=250 ) ) )),
+       Streamer("drakeoffc", settings=StreamerSettings(make_predictions=False , follow_raid=True  , claim_drops=True ,  watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.PERCENTAGE , percentage=5 , stealth_mode=False, percentage_gap=20 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_POINTS,     where=Condition.GTE, value=250 ) ) )),
+       Streamer("PwGood", settings=StreamerSettings(make_predictions=True , follow_raid=True  , claim_drops=True ,  watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.HIGH_ODDS , percentage=20 , stealth_mode=False, percentage_gap=10 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_USERS,     where=Condition.GTE, value=250 ) ) )),
+       Streamer("", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True , community_goals=False  , bet=BetSettings(strategy=Strategy.SMART      , percentage=5 , stealth_mode=True,  percentage_gap=20 , max_points=234   , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_USERS,      where=Condition.LTE, value=800 ) ) ))
     ],                                  # Array of streamers (order = priority)
     followers=False,                    # Automatic download the list of your followers
     followers_order=FollowersOrder.ASC  # Sort the followers list by follow date. ASC or DESC
